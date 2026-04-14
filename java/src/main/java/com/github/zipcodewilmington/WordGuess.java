@@ -18,14 +18,14 @@ public class WordGuess {
             setupGame();
             playGame();
             System.out.println("Would you like to play again? (yes/no) ");
-            playAgain = scanner.nextLine().trim().toLowerCase();
+            playAgain = scanner.nextLine().toLowerCase();
         }
 
         System.out.println("Game Over.");
         scanner.close();
     }
 
-    static void setupGame() {
+    public static void setupGame() {
         String word = pickRandomWord();
         solution = word.toCharArray();
         playerGuesses = buildEmptyGuesses(solution.length);
@@ -33,12 +33,12 @@ public class WordGuess {
         System.out.println("Let's Play Wordguess game");
     }
 
-    static String pickRandomWord() {
+    public static String pickRandomWord() {
         int index = (int) (Math.random() * wordList.length);
         return wordList[index];
     }
 
-    static char[] buildEmptyGuesses(int length) {
+    public static char[] buildEmptyGuesses(int length) {
         char[] guesses = new char[length];
         for (int i = 0; i < length; i++) {
             guesses[i] = '_';
@@ -46,7 +46,7 @@ public class WordGuess {
         return guesses;
     }
 
-    static void playGame() {
+    public static void playGame() {
         while (triesLeft > 0 && !isWordGuessed()) {
             printCurrentGuesses();
             System.out.println("You have " + triesLeft + " tries left.");
@@ -66,7 +66,7 @@ public class WordGuess {
         printResult();
     }
 
-    static void processLetter(char letter) {
+    public static void processLetter(char letter) {
         boolean found = false;
         for (int i = 0; i < solution.length; i++) {
             if (solution[i] == letter) {
@@ -79,7 +79,7 @@ public class WordGuess {
         }
     }
 
-    static boolean isWordGuessed() {
+    public static boolean isWordGuessed() {
         for (char c : playerGuesses) {
             if (c == '_')
                 return false;
@@ -87,7 +87,7 @@ public class WordGuess {
         return true;
     }
 
-    static void printCurrentGuesses() {
+    public static void printCurrentGuesses() {
         System.out.println("Current Guesses: ");
         for (char c : playerGuesses) {
             System.out.print(c + " ");
@@ -95,7 +95,7 @@ public class WordGuess {
         System.out.println();
     }
 
-    static void printResult() {
+    public static void printResult() {
         if (isWordGuessed()) {
             printCurrentGuesses();
             System.out.println("Congratulations, You Won!");
